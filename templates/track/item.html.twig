@@ -16,7 +16,7 @@
             <p class="card-text">Artist : {{ track.album.artist.stageName }}</p>
             <a href="{{ path('app_album_item', {'id': track.album.id}) }}" class="btn btn-primary">{{ track.album.title }}</a>
             <a href="{{ path('app_track_edit', {'id': track.id}) }}" class="btn btn-primary">edit track</a>
-            <a href="{{ path('app_favorite', {'id': track.id}) }}" class="btn btn-primary">fav</a>
+            <button class="btn btn-primary" id="buttonFav" data-track-id="{{ track.id }}">fav</button>
             <a href="{{ path('app_track_playlist', {'id': track.id}) }}" class="btn btn-primary">add to playlist</a>
         </div>
     </div>

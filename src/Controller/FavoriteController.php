@@ -30,7 +30,7 @@ final class FavoriteController extends AbstractController
             $favorite = $favoriteRepository->findOneBy(['user' => $user, 'track' => $track]);
             $entityManagerInterface->remove($favorite);
             $entityManagerInterface->flush();
-            return $this->redirectToRoute("app_profil", ['id' => $user->getId()]);
+            return $this->json(["fav" => false]);
         } else {
             $favorite = new Favorite();
             $favorite->setCreatedAt(new \DateTimeImmutable());
@@ -38,7 +38,28 @@ final class FavoriteController extends AbstractController
             $favorite->setUser($user);
             $entityManagerInterface->persist($favorite);
             $entityManagerInterface->flush();
-            return $this->redirectToRoute("app_profil", ['id' => $user->getId()]);
+            return $this->json(["fav" => true]);
+        }
+        return $this->render('favorite/item.html.twig', []);
+    }
+
+    #[Route('/favoriteCheck/{id}', name: 'app_favorite_check')]
+    public function check($id, TrackRepository $trackRepository): Response
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute("app_login");
+        }
+        $track = $trackRepository->find($id);
+        $user = $this->getUser();
+        $favorites = $user->getFavorites();
+        $favTracks = [];
+        foreach ($favorites as $favorite) {
+            array_push($favTracks, $favorite->getTrack());
+        }
+        if (in_array($track, $favTracks)) {
+            return $this->json(["fav" => true]);
+        } else {
+            return $this->json(["fav" => false]);
         }
         return $this->render('favorite/item.html.twig', []);
     }
