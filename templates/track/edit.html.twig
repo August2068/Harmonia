@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia {{ track.title }} edit{% endblock %}
+
+{% block body %}
+    <h1>{{ track.album.artist.stageName }}</h1>
+    <h2>{{ track.album.title }}</h2>
+    <h3>{{ track.title }}</h3>
+    {{ form_start(form) }}
+    <div>
+        {{ form_row(form.title) }}
+        {{ form_row(form.duration) }}
+        {{ form_row(form.number) }}
+        {{ form_row(form.isExplicit) }}
+        {{ form_row(form.genres) }}
+    </div>
+    <button type="submit">Edit Track</button>
+    {{ form_end(form) }}
+{% endblock %}

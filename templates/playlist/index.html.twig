@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PlaylistController!{% endblock %}
+
+{% block body %}
+    <div class="card" style="width: 50rem;">
+        {% if playlist.tracks|length > 0 %}
+            <img src="{{ asset(playlist.tracks[0].album.poster) }}" class="card-img-top" alt="...">
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{ playlist.name }}</h5>
+            {% if playlist.isPublic %}
+                <span class="badge text-bg-secondary">Public</span>
+            {% else %}
+                <span class="badge text-bg-secondary">Private</span>
+            {% endif %}
+            <p class="card-text">Created : {{ playlist.createdAt|date('m/Y') }}</p>
+            <p class="card-text">Number of tracks : {{ playlist.tracks|length }} - Duration : {{ duration|date("H:i:s") }}</p>
+            <ul>
+                {% for track in playlist.tracks %}
+                    <li><a href="{{ path('app_track_item', {'id': track.id}) }}">{{ track.title }}</a> : {{ track.duration|date('i:s') }}sec</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

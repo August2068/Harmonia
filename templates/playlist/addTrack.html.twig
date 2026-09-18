@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia Playlist{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div>
+        {{ form_row(form.playlists) }}
+    </div>
+    <button type="submit">Add to Playlists</button>
+    {{ form_end(form) }}
+{% endblock %}

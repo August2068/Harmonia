@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia Artist Manager{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div>
+        {{ form_row(form.stageName) }}
+        {{ form_row(form.biography) }}
+        {{ form_row(form.country) }}
+    </div>
+    <button type='submit'>Add new artist</button>
+    {{ form_end(form) }}
+{% endblock %}

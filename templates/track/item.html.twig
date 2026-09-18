@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia {{ track.title }}{% endblock %}
+
+{% block body %}
+    <div class="card" style="width: 50rem;">
+        <img src="{{ asset(track.album.poster) }}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ track.title }} - {{ track.duration|date('H:i:s') }}sec</h5>
+            {% for genre in track.genres %}
+                <span class="badge text-bg-secondary"><a class='link-light link-underline link-underline-opacity-0' href="{{ path("app_genre", {"id": genre.id}) }}">{{ genre.name }}</a></span>
+            {% endfor %}
+            {% if track.isExplicit %}
+                <span class="badge text-bg-secondary">Explicit</span>
+            {% endif %}
+            <p class="card-text">Artist : {{ track.album.artist.stageName }}</p>
+            <a href="{{ path('app_album_item', {'id': track.album.id}) }}" class="btn btn-primary">{{ track.album.title }}</a>
+            <a href="{{ path('app_track_edit', {'id': track.id}) }}" class="btn btn-primary">edit track</a>
+            <a href="{{ path('app_favorite', {'id': track.id}) }}" class="btn btn-primary">fav</a>
+            <a href="{{ path('app_track_playlist', {'id': track.id}) }}" class="btn btn-primary">add to playlist</a>
+        </div>
+    </div>
+{% endblock %}
+
+

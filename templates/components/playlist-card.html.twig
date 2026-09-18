@@ -1,0 +1,16 @@
+<div class="card shadow" style="width: 18rem;">
+    {% if playlist.tracks|length > 0 %}
+        <img src="{{ asset(playlist.tracks[0].album.poster) }}" class="card-img-top" alt="...">
+    {% endif %}
+    <div class="card-body">
+        <h5 class="card-title">{{ playlist.name }}</h5>
+        {% if playlist.isPublic %}
+            <span class="badge text-bg-secondary">Public</span>
+        {% else %}
+            <span class="badge text-bg-secondary">Private</span>
+        {% endif %}
+        <p class="card-text">{{ playlist.description }}</p>
+        <p class="card-text">Number of tracks : {{ playlist.tracks|length }}</p>
+        <a href="{{ path('app_playlist', {"id": playlist.id}) }}" class="btn btn-primary">Playlist page</a>
+    </div>
+</div>

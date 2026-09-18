@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia Profil{% endblock %}
+
+{% block body %}
+    <h1>Welcome</h1>
+    <div>
+        <p>email : {{ user.email }}</p>
+    </div>
+    <div class="container text-center">
+        <div class="row">
+            <h3>Playlists</h3>
+            <a href="{{ path('app_playlist_create') }}" class="btn btn-primary">Add Playlist</a>
+            {% for playlist in user.playlists %}
+                <div class="col">
+                    {% include "components/playlist-card.html.twig" with {playlist: playlist} %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <h3>Favorites</h3>
+            {% for favorite in user.favorites %}
+                <div class="col">
+                    {% include "components/favorite-card.html.twig" with {track: favorite.track, type: "fav", item: favorite} %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <h3>History</h3>
+            {% for history in user.histories %}
+                <div class="col">
+                    {% include "components/favorite-card.html.twig" with {track: history.track, type: "his", item: history} %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

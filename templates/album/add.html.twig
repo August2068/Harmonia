@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia {{ artist.stageName }} manager{% endblock %}
+
+{% block body %}
+    <h1>{{ artist.stageName }}</h1>
+    <div>
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.releasedAt) }}
+        {{ form_row(form.poster) }}
+    </div>
+    {{ form_row(form.type) }}
+    <button type="submit">Create Album</button>
+    {{ form_end(form) }}
+{% endblock %}

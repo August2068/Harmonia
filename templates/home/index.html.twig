@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>EP :</h2>
+        <div class="row">
+            {% for ep in eps %}
+                <div class="col-3 mb-2">
+                    {% include "components/album-card.html.twig" with {album: ep} %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <h2>Singles :</h2>
+        <div class="row">
+            {% for single in singles %}
+                <div class="col-3 mb-2">
+                    {% include "components/album-card.html.twig" with {album: single} %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <h2>Albums :</h2>
+        <div class="row">
+            {% for album in albums %}
+                <div class="col-3 mb-2">
+                    {% include "components/album-card.html.twig" with {album: album} %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

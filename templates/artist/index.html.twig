@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia Artists{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Artists :</h2>
+        <a href="{{ path('app_artist_add') }}" class="btn btn-primary">Add artist</a>
+        <div class="row">
+            {% for artist in artists %}
+                <div class="col-3 mb-2">
+                    <div class="card shadow" style="width: 18rem;">
+                        {% if artist.albums|length > 0 %}
+                            <img src="{{ asset(artist.albums[0].poster) }}" class="card-img-top" alt="...">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ artist.stageName }}</h5>
+                            <span class="badge text-bg-secondary">{{ artist.country }}</span>
+                            <p class="card-text">Number of albums : {{ artist.albums|length }}</p>
+                            <a href="{{ path('app_artist_item', {'id': artist.id}) }}" class="btn btn-primary">artist page</a>
+                            <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="btn btn-primary">edit artist</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

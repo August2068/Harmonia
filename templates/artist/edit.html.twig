@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Harmonia Artist Manager{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div>
+        {{ form_row(form.stageName) }}
+        {{ form_row(form.biography) }}
+        {{ form_row(form.country) }}
+    </div>
+    <button type='submit'>Edit artist</button>
+    {{ form_end(form) }}
+
+    <div class='container'>
+        <div class='row'>
+            {% if artist.albums|length > 0 %}
+                {% for album in artist.albums %}
+                    <div class='col-3 mb-2'>
+                        {% include "components/album-card.html.twig" with {album: album} %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

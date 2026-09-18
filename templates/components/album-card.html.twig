@@ -1,0 +1,10 @@
+<div class="card shadow" style="width: 18rem;">
+    <img src="{{ asset(album.poster) }}" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{ album.title }}</h5>
+        <span class="badge text-bg-secondary">{{ album.type }}</span>
+        <p class="card-text">Artist : {{ album.artist.stageName }}</p>
+        <p class="card-text">Number of tracks : {{ album.tracks|length }}</p>
+        <a href="{{ path('app_album_item', {'id': album.id}) }}" class="btn btn-primary">Album page</a>
+    </div>
+</div>
