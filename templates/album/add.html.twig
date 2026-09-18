@@ -4,13 +4,13 @@
 
 {% block body %}
     <h1>{{ artist.stageName }}</h1>
+    {{ form_start(form) }}
     <div>
-        {{ form_start(form) }}
         {{ form_row(form.title) }}
         {{ form_row(form.releasedAt) }}
         {{ form_row(form.poster) }}
+        {{ form_row(form.type) }}
     </div>
-    {{ form_row(form.type) }}
     <button type="submit">Create Album</button>
     {{ form_end(form) }}
 {% endblock %}

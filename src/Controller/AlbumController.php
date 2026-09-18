@@ -63,7 +63,7 @@ final class AlbumController extends AbstractController
             if ($img) {
                 $ogFilename = pathinfo($img->getClientOriginalName(), PATHINFO_FILENAME);
                 $safeFilename = $slugger->slug($ogFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $img->guessExtension();
+                $newFilename = 'uploads/' . $safeFilename . '-' . uniqid() . '.' . $img->guessExtension();
 
                 try {
                     $img->move($imgDirectory, $newFilename);

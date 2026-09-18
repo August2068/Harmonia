@@ -8,13 +8,37 @@ import './stimulus_bootstrap.js';
 import './styles/app.css';
 
 let button = document.getElementById("buttonFav");
-const id = button.dataset.trackId;
-
-checkFav();
+let buttonListen = document.getElementById("buttonList");
+let id;
+if(button){
+    id = button.dataset.trackId;
+    checkFav();
 
 button.addEventListener("click", (e)=>{
     fav();
 });
+}
+
+if(buttonListen){
+    id = buttonListen.dataset.trackId;
+    buttonListen.addEventListener("click", ()=>{
+        listen();
+    })
+}
+
+async function listen(){
+    try {
+        const res = await fetch(`/history/${id}`);
+        if (!res.ok){
+            throw new Error(res.status);
+        }
+        const result = await res.json();
+        result.listened && (buttonListen.innerText = "Listening ...");
+        setTimeout(()=>{buttonListen.innerText = "Listen";},buttonListen.dataset.trackDur*1000)
+    } catch (error){
+        console.error(error.message);
+    }
+}
 
 async function checkFav(){
     try {

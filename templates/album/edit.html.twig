@@ -5,13 +5,13 @@
 {% block body %}
     <h1>{{ album.artist.stageName }}</h1>
     <h2>{{ album.title }}</h2>
+    {{ form_start(form) }}
     <div>
-        {{ form_start(form) }}
         {{ form_row(form.title) }}
         {{ form_row(form.releasedAt) }}
         {{ form_row(form.poster) }}
+        {{ form_row(form.type) }}
     </div>
-    {{ form_row(form.type) }}
     <button type="submit">Edit Album</button>
     {{ form_end(form) }}
 {% endblock %}
